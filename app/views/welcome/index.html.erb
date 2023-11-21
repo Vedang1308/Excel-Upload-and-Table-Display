@@ -1,7 +1,41 @@
 <% if current_user %>
-  <h3>Welcome: <%= current_user.email %></h3>
+  <div>
+    <h3>Welcome: <%= current_user.email %></h3>
+
+    <%= form_for(current_user, url: upload_excel_welcome_index_path, html: { method: :post, multipart: true }) do |f| %>
+        <%= f.label :excel_file, 'Upload Excel File:' %>
+        <%= f.file_field :excel_file %>
+        <%= f.submit 'Upload' %>
+      <% end %>
+      
+  </div>
+
+  <% if current_user.excel_file.present? %>
+    <div>
+      <h3>Excel File Contents:</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <% current_user.excel_file_data.first.keys.each do |header| %>
+              <th><%= header %></th>
+            <% end %>
+          </tr>
+        </thead>
+        <tbody>
+          <% current_user.excel_file_data.each do |row| %>
+            <tr>
+              <% row.values.each do |value| %>
+                <td><%= value %></td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+
 <% else %>
   <div>
-    <h2>Welcome to the Mass Mailer!</h2>
+    <h2>Welcome to Mass Mailer</h2>
   </div>
 <% end %>

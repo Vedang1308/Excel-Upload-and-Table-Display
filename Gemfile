@@ -10,6 +10,9 @@ gem 'twitter-bootstrap-rails'
 gem 'devise-bootstrap-views'
 gem 'jquery-rails'
 
+gem 'carrierwave'
+gem 'roo'
+
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
