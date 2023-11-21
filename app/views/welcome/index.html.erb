@@ -1,0 +1,7 @@
+<% if current_user %>
+  <h3>Welcome: <%= current_user.email %></h3>
+<% else %>
+  <div>
+    <h2>Welcome to the Mass Mailer!</h2>
+  </div>
+<% end %>
